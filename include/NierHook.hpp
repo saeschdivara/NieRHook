@@ -16,7 +16,7 @@
 #include <WinSock2.h>
 #else
 #include <Windows.h>
-#endif;
+#endif
 
 #include <TlHelp32.h>
 #include <string>
@@ -181,4 +181,4 @@ template <typename T> inline void NieRHook::writeMemory(uintptr_t address, T val
     CloseHandle(pHandle);
 }
 
-#endif;
+#endif

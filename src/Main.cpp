@@ -27,7 +27,7 @@ void ENDPressed(NieRHook* hook)
  */
 int main()
 {
-    _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF); // Look for memory leaks
+//    _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF); // Look for memory leaks
 
     NieRHook hook;
     cout << "Hooking..." << endl;

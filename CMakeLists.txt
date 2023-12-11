@@ -24,9 +24,9 @@ target_include_directories(${PROJECT_NAME} PRIVATE include)
 target_include_directories(${PROJECT_NAME} PRIVATE src)
 
 # Configure Demo
-if(BUILD_TYPE STREQUAL "Debug")
+#if(BUILD_TYPE STREQUAL "Debug")
     set(DEMO_SOURCES src/Main.cpp)
     add_executable(${PROJECT_NAME}_DEMO ${DEMO_SOURCES})
     target_include_directories(${PROJECT_NAME}_DEMO PRIVATE include)
     target_link_libraries(${PROJECT_NAME}_DEMO ${PROJECT_NAME})
-endif()
+#endif()

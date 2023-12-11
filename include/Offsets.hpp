@@ -5,7 +5,7 @@
 #include <WinSock2.h>
 #else
 #include <Windows.h>
-#endif;
+#endif
 
 typedef struct
 {
@@ -108,4 +108,4 @@ struct offsets
     cheat InfiniteConsumableSupportItems;
 };
 
-#endif;
+#endif
