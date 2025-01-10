@@ -26,9 +26,49 @@
 #define VER_1_0_2 2
 #define AUTO -1
 
+enum class Item : unsigned long {
+    // Restore items
+    SmallRecovery = 0,
+    MediumRecovery = 1,
+    LargeRecovery = 2,
+    FullRecovery = 3,
+    VisualCure = 60,
+    AuralCure = 70,
+    CureManipulation = 75,
+    CureAllStatus = 80,
+    CureAllHealAll = 90,
+
+    // Material
+    Amber = 633,
+    AncientMask = 682,
+    BeastHide = 510,
+    BlackPearl = 639,
+    BoarMeat = 517,
+    BrokenBattery = 545,
+    BrokenCircuit = 646,
+    BrokenKey = 540,
+    CopperOre = 600,
+    CleanNut = 560,
+    ComplexGadget = 582,
+    CrushedNut = 636,
+    Crystal = 680,
+    DrabBracelet = 641,
+    DentedPlate = 610,
+    DentedSocket = 645,
+    Dye = 631,
+    EagleEggs = 638,
+    ElaborateGadget = 581,
+    FillerMetal = 630,
+    GiantEgg = 637,
+    GoldOre = 603,
+    IronOre = 601,
+
+    Unknown = 9999,
+};
+
 typedef struct
 {
-    int id;
+    Item id;
     int quantity;
 } inventoryItem;
 

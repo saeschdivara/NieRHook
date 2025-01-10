@@ -1,4 +1,5 @@
 #include "NierHook.hpp"
+#include "magic_enum/magic_enum.hpp"
 #include <TlHelp32.h>
 #include <Windows.h>
 #include <iostream>
@@ -39,39 +40,49 @@ int main()
     cout << "Hooked" << endl;
 
     // Enable some cheats
-    hook.InfiniteDoubleJump(true);
-    hook.IgnoreUpgradeMaterials(true);
-
-    // Add some items
-    // For ID reference please visit github.com/Asiern/NieRHook Readme
-    hook.addItem(510, 80); // Beast Hide ID => 510
-    hook.addItem(0, 10);   // Small Recovery => ID 0
-    hook.addItem(721, 1);  // Data chip B => ID 721
-    hook.addItem(400, 99); // E-Drug => ID 400
-
-    // Add some weapons
-    hook.addWeapon(0x4D8, 1); // Type-40 Blade => ID 0x4D8
-    hook.addWeapon(0x41A, 1); // Type-40 Sword => ID 0x41A
+//    hook.InfiniteDoubleJump(true);
+//    hook.IgnoreUpgradeMaterials(true);
+//
+//    // Add some items
+//    // For ID reference please visit github.com/Asiern/NieRHook Readme
+//    hook.addItem(510, 80); // Beast Hide ID => 510
+//    hook.addItem(0, 10);   // Small Recovery => ID 0
+//    hook.addItem(721, 1);  // Data chip B => ID 721
+//    hook.addItem(400, 99); // E-Drug => ID 400
+//
+//    // Add some weapons
+//    hook.addWeapon(0x4D8, 1); // Type-40 Blade => ID 0x4D8
+//    hook.addWeapon(0x41A, 1); // Type-40 Sword => ID 0x41A
 
     // Create a thread to exit when the 'END' button is pressed
     std::thread exitThread(ENDPressed, &hook);
+
+    bool f = false;
 
     // Print some values
     while (hook.isHooked())
     {
         Sleep(500);
         system("cls");
-        if (!hook.isSavefileLoaded())
-        {
-            std::cout << "Loaded Savefile: NONE" << std::endl;
-            continue;
-        }
+//        if (!hook.isSavefileLoaded())
+//        {
+//            std::cout << "Loaded Savefile: NONE" << std::endl;
+//            continue;
+//        }
 
         hook.update(); // update hook internal values (Position, Health, Level...)
         std::cout << "X: " << hook.getXPosition() << "  Y: " << hook.getYPosition() << "  Z: " << hook.getYPosition()
                   << std::endl;
         std::cout << "Health: " << hook.getHealth() << std::endl;
-        std::cout << "Press END to exit..." << std::endl;
+
+        if (!f) {
+            f = true;
+
+            for (const auto& item : hook.readInventory())
+            {
+                std::cout << "Item: " << magic_enum::enum_name(item.id) << " / " << item.quantity << std::endl;
+            }
+        }
     }
 
     // Join thread and exit

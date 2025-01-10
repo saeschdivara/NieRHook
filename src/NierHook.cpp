@@ -10,6 +10,7 @@
  */
 
 #include "NierHook.hpp"
+#include "magic_enum/magic_enum.hpp"
 
 /**
  * @brief Search for window named "NieR:Automata"
@@ -570,7 +571,8 @@ std::vector<inventoryItem> NieRHook::readInventory(void)
         currentID = readMemory<int>(addr);
         if (currentID != 0xffffffff)
         {
-            currentItem.id = currentID;
+            auto item = magic_enum::enum_cast<Item>(currentID).value_or(Item::Unknown);
+            currentItem.id = item;
             currentItem.quantity = readMemory<int>(addr + 0x8);
             items.push_back(currentItem);
         }
